@@ -1,0 +1,22 @@
+SETPS:
+
+1)Make the setting as follow
+PINOUT and CONFIGURATION
+RCC:
+  ->HIGH SPEED CLOCK = crystal ceramic resonator
+  ->LOW SPEED CLOCK = crystal ceramic resonator
+SYS:
+  ->DEBUG = serial Wire
+  ->TIMEBASE SOURCE = tim1 or sys tick
+USART1:
+  ->MODE = asynchronous
+  ->FLOW CONTROL = disable
+  BASIC PARAMETER:
+    ->baud rate setting,bit length setting all are available
+CLOCK CONFIGURATION
+  HCLK = 8MHZ
+2) finalize the project location and IDE.
+CODE GENERATOR:
+  -> diable generate peripheral initialization as part of .c
+  -> enable full assert in HAL setting
+3)generate code.
