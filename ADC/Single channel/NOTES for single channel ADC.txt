@@ -1,0 +1,44 @@
+There are 3 method of using ADC:
+1) Poll for convertion
+2) Interrupt
+3) DMA
+
+step 1:
+
+RCC->high speed clock speed = crystal ceramic resonator
+     low speed clock speed = crystal ceramic resonator
+STS->debug = serial wire
+ADC1->MODE = IN0
+      -->BASIC PARAMETER:
+        a)ADC_COMMON_SETTING
+          mode = idependent mode
+        b)ADC_SETTING
+          data alignment = right
+          scan convertion mode = disable
+          continuous convertion mode = enable
+          discontinuous convertion mode = diable
+        c)ADC_REGULAR_CONVERSTION_MODE = enable(by default)
+        d)ADC_INJECTION_CONVERTION_MODE = disable(by default)
+        e)WATCHDOG = disable(by default)
+      -->DMA setting
+        a)Add and select the ADC1
+        b)mode = circular
+        c)data width = word for both peripheral and memory
+
+CLOCK CONFIGURATION:
+1) enable HSE in PLL source MUX
+2) enable CSS in system clock MUX
+3) make 72MHZ in HCLK
+4) NOTE: that ADC clock is 12MHz it is important for caculating convertion time and sampling time
+    so make 12 MHZ on ADC channel(bottom right)
+    
+###############    
+|CODE SECTION |
+###############
+1) POLLFORCONVERTION method
+steps:
+-->start ADC = HAL_ADC_Start(&hadc1);
+-->wait for convertion to complete = HAL_ADC_PollForConversion(&hadc1,100);
+-->Read the value = adc_value = HAL_ADC_GetValue(&hadc1);
+-->stop the ADC. = HAL_ADC_Stop(&hadc1);
+2)
